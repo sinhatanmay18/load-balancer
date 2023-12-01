@@ -1,5 +1,10 @@
 # Request Mapping Engine
 
+## Technology Used
+1. Java
+2. Spring Boot
+3. MySQL
+
 ## Overview
 The Request Mapping Engine is a custom solution, designed to function within a load balancing environment, to optimize the distribution of web application traffic using a consistent hashing algorithm. The core of the engine uses SHA-256 for hashing and a TreeMap for maintaining a consistent hash ring, ensuring efficient and evenly distributed traffic management. 
 
