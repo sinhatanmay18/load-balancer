@@ -9,7 +9,8 @@ The Request Mapping Engine is a custom solution, designed to function within a l
 ## Hash Ring
 A hash ring is a data structure used in consistent hashing, an algorithm designed to distribute load (like network traffic, data storage) evenly across a set of servers or nodes. The hash ring represents a circular space where each point on the ring corresponds to a hash value. 
 
-![Concept of Hash Ring](https://github.com/sinhatanmay18/request-mapping-engine/assets/76418883/468f70f1-a203-4961-892d-e625fc251321)
+![Concept of Hash Ring](https://github.com/sinhatanmay18/request-mapping-engine/assets/76418883/cd85729e-6812-464e-a645-02865d0a893b)
+
 
 
 ## Key Characteristics of a Hash Ring:
