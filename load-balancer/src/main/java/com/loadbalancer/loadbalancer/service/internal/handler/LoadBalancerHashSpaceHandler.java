@@ -1,7 +1,6 @@
 package com.loadbalancer.loadbalancer.service.internal.handler;
 
 import com.loadbalancer.loadbalancer.entity.Server;
-import com.loadbalancer.loadbalancer.entity.UserDetails;
 import com.loadbalancer.loadbalancer.service.HashSpaceHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,8 +45,8 @@ public class LoadBalancerHashSpaceHandler implements HashSpaceHandler {
             return this.circle.get(objectKeyIndex);
         }
 
-        while(this.circle.get(objectKeyIndex) != null){
-            objectKeyIndex += 1;
+        while(this.circle.get(objectKeyIndex) == null){
+            objectKeyIndex =( objectKeyIndex + 1 ) % SIZE;
         }
         return this.circle.get(objectKeyIndex);
     }

@@ -1,10 +1,8 @@
 package com.loadbalancer.loadbalancer.service.internal;
 
 import com.loadbalancer.loadbalancer.entity.Server;
-import com.loadbalancer.loadbalancer.repository.ServerRepository;
 import com.loadbalancer.loadbalancer.service.HashSpaceHandler;
 import com.loadbalancer.loadbalancer.service.ServerService;
-import com.loadbalancer.loadbalancer.service.internal.handler.LoadBalancerHashSpaceHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
