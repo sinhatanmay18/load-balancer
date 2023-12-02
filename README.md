@@ -33,6 +33,7 @@ Here’s how we use IP and Port number to plot the server on the hash ring:
 
 The hash space which is in the form of sorted map offers a natural ordering of its keys, ensuring that when I receive a hashed value from user details or server information, I can efficiently find its position or the closest key in the map. This allows for quick server lookups and ensures that requests are directed to the correct server.
 
+![Plotting servers](https://github.com/sinhatanmay18/request-mapping-engine/assets/76418883/248556ce-e05d-4af3-8bef-cf32d40410c8)
 
 ## Hashing User Requests
 User requests are mapped to servers based on hashed user identifiers, such as email and username. The hashing process identifies the appropriate server on the hash ring to handle each request. Here’s how user requests are hashed and servers are allotted to incoming requests:
