@@ -28,8 +28,8 @@ Each server in our system is assigned a position on the hash ring. This position
 
 Here’s how we use IP and Port number to plot the server on the hash ring:
 
-![Server Hashing](https://github.com/sinhatanmay18/request-mapping-engine/assets/76418883/f4a64c3a-16a2-4592-b34e-c645815ad9d8)
-                                                      
+![procedure(1)](https://github.com/sinhatanmay18/request-mapping-engine/assets/76418883/a3683b22-3813-48b8-b7d5-660651b9d7cf)
+                                                    
 
 The hash space which is in the form of sorted map offers a natural ordering of its keys, ensuring that when I receive a hashed value from user details or server information, I can efficiently find its position or the closest key in the map. This allows for quick server lookups and ensures that requests are directed to the correct server.
 
@@ -38,7 +38,8 @@ The hash space which is in the form of sorted map offers a natural ordering of i
 ## Hashing User Requests
 User requests are mapped to servers based on hashed user identifiers, such as email and username. The hashing process identifies the appropriate server on the hash ring to handle each request. Here’s how user requests are hashed and servers are allotted to incoming requests:
 
-![User Request hashing](https://github.com/sinhatanmay18/request-mapping-engine/assets/76418883/f8845da7-7b45-45f4-8cb8-5b022e3ebc06)
+![procedure(2)](https://github.com/sinhatanmay18/request-mapping-engine/assets/76418883/bd272b55-75c8-47d8-beae-e0eb966fbfe0)
+
                                                     
 ![Finding Nearest server](https://github.com/sinhatanmay18/request-mapping-engine/assets/76418883/18cd3e75-d743-4494-b5b0-301e72d0964d)
                                                      
