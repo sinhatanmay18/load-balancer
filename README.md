@@ -9,6 +9,12 @@
 The Request Mapping Engine is a custom solution, designed to function within a load balancing environment, to optimize the distribution of web application traffic using a consistent hashing algorithm. The core of the engine uses SHA-256 for hashing and a TreeMap for maintaining a consistent hash ring, ensuring efficient and evenly distributed traffic management. 
 
 ![Working figure](https://github.com/sinhatanmay18/request-mapping-engine/assets/76418883/7c1bf3d7-e500-4b09-8097-f70ea8a27655)
+
+
+## Why consistent hashing over traditional hashing?
+With traditional “modulo hashing”, you simply consider the request hash as a very large number. If you take that number modulo the number of available servers, you get the index of the server to use. It’s simple, and it works well as long as the list of servers is stable. But when servers are added or removed, a problem arises: the majority of requests will hash to a different server than they did before. If you have nine servers and you add a tenth, only one-tenth of requests will (by luck) hash to the same server as they did before. Consistent hashing can achieve well-distributed uniformity.
+
+Consistent hashing uses a more elaborate scheme, where each server is assigned multiple hash values based on its name or ID, and each request is assigned to the server with the “nearest” hash value. The benefit of this added complexity is that when a server is added or removed, most requests will map to the same server that they did before. So if you have nine servers and add a tenth, about 1/10 of requests will have hashes that fall near the newly-added server’s hashes, and the other 9/10 will have the same nearest server that they did before. Consistent hashing lets us add and remove servers without completely disturbing the set of cached items that each server holds.
                                               
 
 ## Hash Ring
