@@ -47,5 +47,6 @@ User requests are mapped to servers based on hashed user identifiers, such as em
 ![procedure(2)](https://github.com/sinhatanmay18/request-mapping-engine/assets/76418883/bd272b55-75c8-47d8-beae-e0eb966fbfe0)
 
                                                     
-![Finding Nearest server](https://github.com/sinhatanmay18/request-mapping-engine/assets/76418883/18cd3e75-d743-4494-b5b0-301e72d0964d)
+![request finding](https://github.com/sinhatanmay18/request-mapping-engine/assets/76418883/7dcf1a8f-7df6-4cae-9b82-2c20877b5669)
+
                                                      
