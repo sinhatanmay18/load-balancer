@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.SortedMap;
 import java.util.TreeMap;
 
 @Component("loadBalancerHashSpaceHandler")
@@ -17,7 +18,7 @@ import java.util.TreeMap;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class LoadBalancerHashSpaceHandler implements HashSpaceHandler {
 
-    private final TreeMap<Long, Server> circle = new TreeMap<>();
+    private final SortedMap<Long, Server> circle = new TreeMap<>();
     private final Long SIZE = Long.MAX_VALUE;
     @Override
     public boolean mapServer(Server server) {
@@ -34,24 +35,20 @@ public class LoadBalancerHashSpaceHandler implements HashSpaceHandler {
     }
     @Override
     public Server findNearestServer(String userName, String email) {
-        String encryptedUserDetail = this.encryptString(email + userName).substring(0,15);
+        String encryptedUserDetail = this.encryptString(email + userName);
         Long objectKeyIndex = Long.parseLong(encryptedUserDetail, 16);
         return this.findServer(objectKeyIndex);
     }
 
     private Server findServer(Long objectKeyIndex){
-
         if(this.circle.get(objectKeyIndex) != null){
             return this.circle.get(objectKeyIndex);
         }
-        Long clockwiseIndex = this.circle.ceilingKey(objectKeyIndex);
-        Long counterClockWiseIndex = this.circle.floorKey(objectKeyIndex);
 
-        if(clockwiseIndex != null){
-            return this.circle.get(clockwiseIndex);
+        while(this.circle.get(objectKeyIndex) == null){
+            objectKeyIndex =( objectKeyIndex + 1 ) % SIZE;
         }
-
-        return this.circle.get(counterClockWiseIndex);
+        return this.circle.get(objectKeyIndex);
     }
 
     private String encryptString(String encryptionInput) {
