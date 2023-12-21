@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.SortedMap;
 import java.util.TreeMap;
 
 @Component("loadBalancerHashSpaceHandler")
@@ -18,7 +17,7 @@ import java.util.TreeMap;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class LoadBalancerHashSpaceHandler implements HashSpaceHandler {
 
-    private final SortedMap<Long, Server> circle = new TreeMap<>();
+    private final TreeMap<Long, Server> circle = new TreeMap<>();
     private final Long SIZE = Long.MAX_VALUE;
     @Override
     public boolean mapServer(Server server) {
@@ -45,10 +44,13 @@ public class LoadBalancerHashSpaceHandler implements HashSpaceHandler {
             return this.circle.get(objectKeyIndex);
         }
 
-        while(this.circle.get(objectKeyIndex) == null){
-            objectKeyIndex =( objectKeyIndex + 1 ) % SIZE;
-        }
-        return this.circle.get(objectKeyIndex);
+        Long ClockwiseIndex = circle.ceilingKey(objectKeyIndex);
+        Long CounterClockwiseIndex = circle.floorKey(objectKeyIndex);
+
+        if(ClockwiseIndex != null)
+            return this.circle.get(ClockwiseIndex);
+
+        return this.circle.get(CounterClockwiseIndex);
     }
 
     private String encryptString(String encryptionInput) {
